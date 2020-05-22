@@ -4,7 +4,7 @@ import re
 
 from setuptools import setup
 
-
+INSTALL_REQUIRES = ["docopt"]
 TEST_REQUIRES = ["pytest"]
 
 
@@ -25,6 +25,7 @@ setup(
     description=__description__,
     long_description=long_description,
     py_modules=["picklecat"],
+    install_requires=INSTALL_REQUIRES,
     entry_points={"console_scripts": [
         "picklecat = picklecat:main",
     ]},
