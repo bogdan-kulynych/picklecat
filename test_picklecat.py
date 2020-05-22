@@ -9,7 +9,12 @@ from picklecat import picklecat
 @pytest.fixture(params=["dict", "list"])
 def pickle_setup(request):
     filenames = ["__a.pkl", "__b.pkl", "__c.pkl"]
-    if request.param == "dict":
+
+    if request.param == "object":
+        vals = ["one", "two", "three"]
+        concatenated = vals
+
+    elif request.param == "dict":
         vals = [{"a": 1}, {"b": 2}, {"c": 3}]
         concatenated = {"a": 1, "b": 2, "c": 3}
 

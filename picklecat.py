@@ -31,25 +31,28 @@ def detect_type(content):
     >>> detect_type({"a": 1}) == dict
     True
 
-    >>> detect_type(1)
-    Traceback (most recent call last):
-    ...
-    TypeError: Pickled type is not supported (int)
+    >>> detect_type(1) == "object"
+    True
     """
     if isinstance(content, list):
         return list
     elif isinstance(content, dict):
         return dict
     else:
-        raise TypeError(f"Pickled type is not supported ({content.__class__.__name__})")
+        return "object"
 
 
-def create_unit(pickle_type):
-    return pickle_type()
+def _create_unit(pickle_type):
+    if pickle_type == "object":
+        return []
+    else:
+        return pickle_type()
 
 
 def _concat_inplace(a, b, pickle_type):
-    if pickle_type == list:
+    if pickle_type == "object":
+        a.append(b)
+    elif pickle_type == list:
         a.extend(b)
     elif pickle_type == dict:
         a.update(b)
@@ -63,7 +66,7 @@ def picklecat(*pickle_filenames):
             content = pickle.load(f)
         if pickle_type is None:
             pickle_type = detect_type(content)
-            result = create_unit(pickle_type)
+            result = _create_unit(pickle_type)
         _concat_inplace(result, content, pickle_type=pickle_type)
     return result
 
