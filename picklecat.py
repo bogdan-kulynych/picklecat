@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-picklecat: Concatenate or merge pickled Python 3 lists or dictionaries.
+picklecat: Concatenate or merge pickled Python 3 objects, lists, and dictionaries.
 
 Usage:
     picklecat <pickle_file> <pickle_file>...
@@ -19,7 +19,7 @@ import pickle
 
 __title__ = "picklecat"
 __version__ = "1.0.0"
-__description__ = "Concatenate or merge pickled Python 3 lists or dictionaries"
+__description__ = "Concatenate or merge pickled Python 3 objects, lists, and dictionaries"
 __license__ = "MIT"
 
 
